@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NOVO PEDIDO</title>
+</head>
+<body>
+<div class="card">
+    <div class="card-header" th:text="${pedido.nomeProduto}"></div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12 col-sm-9 mb-3">
+                <div>Produto</div>
+                <div><input class="form-control" th:value="${pedido.urlProduto}"></div>
+
+                <div>Descrição</div>
+                <div>
+                    <textarea class="form-control" th:text="${pedido.descricao}"></textarea>
+                </div>
+            </div>
+            <div class="col-12 col-sm-3">
+                <div>
+                    <img class="img-thumbnail" th:src="${pedido.urlImagem}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
