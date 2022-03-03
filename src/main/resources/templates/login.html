@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-br">
+<head th:replace="~{base :: head}">
+</head>
+<body>
+    <div th:replace="~{base :: logo}"></div>
+    <div class="container">
+        <div th:replace="~{base :: titulo('LOGIN')}"></div>
+        <div class="card mb-3">
+            <form th:action="@{/login}" method="post" class="card-body">
+                <div class="form-group">
+                    <label for="username">Usuário</label>
+                    <input name="username" th:errorClass="is-invalid" class="form-control"
+                           placeholder="Nome de usuário"/>
+                    <small>Informe seu nome de usuário.</small>
+                    <div class="invalid-feedback" th:errors="*{username}"></div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input name="password" th:errorClass="is-invalid" class="form-control"
+                           type="password" placeholder="Senha"/>
+                    <small>Informe sua senha.</small>
+                    <div class="invalid-feedback" th:errors="*{password}"></div>
+                </div>
+                <button class="btn btn-primary" type="submit">Acessar</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

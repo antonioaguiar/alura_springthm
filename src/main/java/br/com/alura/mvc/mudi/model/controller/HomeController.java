@@ -1,4 +1,4 @@
-package br.com.alura.mvc.mudi.controller;
+package br.com.alura.mvc.mudi.model.controller;
 
 import br.com.alura.mvc.mudi.model.Pedido;
 import br.com.alura.mvc.mudi.model.StatusPedido;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Locale;
 
@@ -22,17 +23,17 @@ public class HomeController {
     private PedidoRepository pedidoRepository;
 
     @GetMapping
-    public String home(Model model) {
-        List<Pedido> pedidos = pedidoRepository.findAll();
+    public String home(Model model, Principal principal) {
+        String username = principal.getName();
+        List<Pedido> pedidos = pedidoRepository.findAllByUser(username);
         model.addAttribute("pedidos", pedidos);
-        //model.addAttribute("status", "todos");
         return "home";
     }
 
     @GetMapping("/{status}")
-    public String status(@PathVariable("status") String status, Model model) {
-        System.out.println(status);
-        List<Pedido> pedidos = pedidoRepository.findByStatus(StatusPedido.valueOf(status.toUpperCase(Locale.ROOT)));
+    public String status(@PathVariable("status") String status, Model model, Principal principal) {
+        String username = principal.getName();
+        List<Pedido> pedidos = pedidoRepository.findByStatusAndUsername(StatusPedido.valueOf(status.toUpperCase(Locale.ROOT)), username);
         model.addAttribute("pedidos", pedidos);
         model.addAttribute("status", status);
         return "home";
