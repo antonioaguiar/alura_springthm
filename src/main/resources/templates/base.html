@@ -12,23 +12,30 @@
             font-family: 'Handlee', cursive;
             font-size: 2.5rem;
         }
-
     </style>
 </head>
 
-<div th:fragment="logo" class="logo-container mb-3 p-3 d-flex justify-content-between ">
-    <span class="logo">
-        mudi
-    </span>
-    <span class="mt-3">
-        <a sec:authorize="!isAuthenticated()" class="text-light" href="/login">login</a>
-        <a sec:authorize="isAuthenticated()"
-           onclick="document.querySelector('#form-login').submit();"
-           class="text-light" href="#">logout</a>
-           <form id="form-login" th:action="@{/logout}" method="POST"></form>
-    </span>
+<div th:fragment="logo">
+    <div class="logo-container p-3 d-flex justify-content-between">
+        <span class="logo">
+            mudi
+        </span>
+        <span class="p-3">
+            <a sec:authorize="!isAuthenticated()" class="text-light" href="/login">login</a>
+            <a sec:authorize="isAuthenticated()"
+               onclick="document.querySelector('#form-login').submit();"
+               class="text-light" href="#">logout</a>
+               <form id="form-login" th:action="@{/logout}" method="POST"></form>
+        </span>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+        <nav class="nav">
+            <a class="nav-link" th:href="@{/home}">Home</a>
+            <a class="nav-link" th:href="@{/usuario/pedido}">Meus pedidos</a>
+        </nav>
+    </div>
 </div>
 
-<div th:fragment="titulo(valor)"  class="jumbotron mb-0">
+<div th:fragment="titulo(valor)" class="jumbotron mb-0 mt-2">
     <h1 class="display-4" th:text="${valor}"</h1>
 </div>

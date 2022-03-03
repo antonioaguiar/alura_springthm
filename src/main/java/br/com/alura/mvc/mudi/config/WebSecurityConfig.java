@@ -6,6 +6,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
@@ -25,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/home", true)
+                        .defaultSuccessUrl("/usuario/pedido", true)
                         .permitAll()
                 ).logout(logout -> logout.logoutUrl("/logout"))
                 .csrf().disable();
@@ -36,17 +38,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         //criar os primeiros usuários por aqui
-        //        UserDetails user =
-        //                User.builder()
-        //                        .username("admin")
-        //                        .password(encoder.encode("admin"))
-        //                        .roles("ADMIN")
-        //                        .build();
+//                UserDetails user =
+//                        User.builder()
+//                                .username("aguiar")
+//                                .password(encoder.encode("aguiar"))
+//                                .roles("ADMIN")
+//                                .build();
 
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
-                .passwordEncoder(encoder);
-        //.withUser(user);
+                .passwordEncoder(encoder);//.withUser(user);
     }
 
     /*

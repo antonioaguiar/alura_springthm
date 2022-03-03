@@ -1,4 +1,4 @@
-package br.com.alura.mvc.mudi.model.controller;
+package br.com.alura.mvc.mudi.controller;
 
 import br.com.alura.mvc.mudi.dto.RequisicaoNovoPedido;
 import br.com.alura.mvc.mudi.model.Pedido;
@@ -43,9 +43,9 @@ public class PedidoController {
         novoPedido.setUser(user);
         novoPedido = pedidoRepository.save(novoPedido);
         if (novoPedido.getId() > 0)
-            return "redirect:/home";  //registrado com sucesso!
+            return "redirect:/usuario/pedido";  //registrado com sucesso!
         else
-            return "pedido/formulario";
+            return "/pedido/formulario";
     }
 
 }
