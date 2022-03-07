@@ -45,7 +45,7 @@ public class PedidoController {
         if (novoPedido.getId() > 0)
             return "redirect:/usuario/pedido";  //registrado com sucesso!
         else
-            return "/pedido/formulario";
+            return "pedido/formulario";
     }
 
 }

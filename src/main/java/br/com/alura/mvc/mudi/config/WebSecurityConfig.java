@@ -22,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/home", "/static/*").permitAll()
+                .antMatchers("/oferta/home", "/home", "/js/*", "/css/*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin(form -> form
@@ -38,12 +38,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         //criar os primeiros usuários por aqui
-//                UserDetails user =
-//                        User.builder()
-//                                .username("aguiar")
-//                                .password(encoder.encode("aguiar"))
-//                                .roles("ADMIN")
-//                                .build();
+                UserDetails user =
+                        User.builder()
+                                .username("admin")
+                                .password(encoder.encode("admin"))
+                                .roles("ADMIN")
+                                .build();
 
         auth.jdbcAuthentication()
                 .dataSource(dataSource)

@@ -23,8 +23,6 @@ import java.util.Locale;
 @RequestMapping("/home")
 public class HomeController {
 
-
-
     @Autowired
     private PedidoRepository pedidoRepository;
 
